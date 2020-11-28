@@ -1,4 +1,7 @@
 /target
 .DS_Store
  /escuela-api.iml
- .idea/
+ .idea
+ .settings/
+ .loadpath
+ .recommenders
