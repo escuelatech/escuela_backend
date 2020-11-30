@@ -9,6 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Spring Boot class
+ */
 @RestController
 @SpringBootApplication(scanBasePackages = "com.escuela.*")
 public class EscuelaApiApplication {
