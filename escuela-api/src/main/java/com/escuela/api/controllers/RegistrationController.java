@@ -3,9 +3,7 @@ package com.escuela.api.controllers;
 import com.escuela.api.db.models.Registration;
 import com.escuela.api.jpa.repositories.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,4 +18,11 @@ public class RegistrationController {
     public List<Registration> getAllRegisteredUsers(){
         return registrationRepository.findAll();
     }
+
+    @PostMapping("/adduser")
+    public Registration newUser(@RequestBody Registration newUser){
+        return registrationRepository.save(newUser);
+    }
+
+
 }
