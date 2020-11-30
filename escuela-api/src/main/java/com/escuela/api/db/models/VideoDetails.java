@@ -26,6 +26,9 @@ public class VideoDetails {
     @Column(name="description")
     String description;
 
+    @Column(name="category")
+    String category;
+
     public int getId() {
         return id;
     }
@@ -72,6 +75,14 @@ public class VideoDetails {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
 
