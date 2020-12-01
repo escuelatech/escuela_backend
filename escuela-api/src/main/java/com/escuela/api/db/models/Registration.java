@@ -9,7 +9,7 @@ public class Registration {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name ="id")
-    private String id;
+    private Integer id;
 
     @Column(name ="first_name")
     private String firstName;
@@ -33,11 +33,11 @@ public class Registration {
         this.lastName = lastName;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Integer getId() {
+        return id;
     }
 
-    public String getId() {
-        return id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
