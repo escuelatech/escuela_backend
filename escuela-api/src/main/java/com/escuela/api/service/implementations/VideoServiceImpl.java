@@ -13,9 +13,6 @@ import java.util.List;
 @Service(value = "videoservice")
 public class VideoServiceImpl implements VideoService{
 
-
-    private static native void registerNatives();
-
     final VideoDetailsRepository videoDetailsRepository;
 
     public VideoServiceImpl(VideoDetailsRepository videoDetailsRepository) {
