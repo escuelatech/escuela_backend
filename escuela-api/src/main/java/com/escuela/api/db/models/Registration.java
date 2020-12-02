@@ -11,6 +11,9 @@ public class Registration {
     @Column(name ="id")
     private Integer id;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name ="first_name")
     private String firstName;
 
@@ -39,5 +42,13 @@ public class Registration {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
