@@ -2,6 +2,7 @@ package com.escuela.api.controllers;
 
 import com.escuela.api.db.models.VideoDetails;
 import com.escuela.api.jpa.repositories.VideoDetailsRepository;
+import com.escuela.api.service.interfaces.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +18,12 @@ public class VideoDetailsController {
     @Autowired
     VideoDetailsRepository videoDetailsRepository;
 
+    @Autowired
+    VideoService videoService;
+
     @GetMapping("/getallvideos")
     public List<VideoDetails> getAllVideos(){
-        return videoDetailsRepository.findAll();
+        return videoService.getAllVideos();
     }
 
     @GetMapping("/getbycategory/{category}")
