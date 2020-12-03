@@ -13,6 +13,9 @@ import java.util.List;
 @Service(value = "videoservice")
 public class VideoServiceImpl implements VideoService{
 
+
+    private static native void registerNatives();
+
     final VideoDetailsRepository videoDetailsRepository;
 
     public VideoServiceImpl(VideoDetailsRepository videoDetailsRepository) {
@@ -22,6 +25,16 @@ public class VideoServiceImpl implements VideoService{
     @Override
     public List<VideoDetails> getAllVideos() {
         return videoDetailsRepository.findAll();
+    }
+
+    @Override
+    public List<VideoDetails> getVideosByCategory(String category){
+        return videoDetailsRepository.findByCategory(category);
+    }
+
+    @Override
+    public VideoDetails addNewVideo(VideoDetails video){
+        return videoDetailsRepository.save(video);
     }
 
 }

@@ -4,19 +4,15 @@ import com.escuela.api.db.models.VideoDetails;
 import com.escuela.api.jpa.repositories.VideoDetailsRepository;
 import com.escuela.api.service.interfaces.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/video")
 public class VideoDetailsController {
-
-    @Autowired
-    VideoDetailsRepository videoDetailsRepository;
 
     @Autowired
     VideoService videoService;
@@ -26,9 +22,17 @@ public class VideoDetailsController {
         return videoService.getAllVideos();
     }
 
-    @GetMapping("/getbycategory/{category}")
+    @GetMapping("/getvideosbycategory/{category}")
     public List<VideoDetails> getVideosByCategory(@PathVariable String category){
-        return (List<VideoDetails>) videoDetailsRepository.findByCategory(category);
+        return videoService.getVideosByCategory(category);
     }
+
+    @PostMapping("/addvideo")
+    public VideoDetails addNewVideo(@RequestBody VideoDetails video){
+        return videoService.addNewVideo(video);
+    }
+
+    
+
 
 }
