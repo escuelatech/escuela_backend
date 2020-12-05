@@ -18,6 +18,7 @@ public class VersionController {
 
     @GetMapping
     public String getApiVersion(){
+
         return "v1.0";
     }
 

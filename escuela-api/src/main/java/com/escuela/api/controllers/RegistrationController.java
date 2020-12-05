@@ -5,6 +5,7 @@ import com.escuela.api.jpa.repositories.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -24,5 +25,13 @@ public class RegistrationController {
         return registrationRepository.save(newUser);
     }
 
+    @GetMapping("/finduser")
+    public List<Registration> findRegisteredUsers(HttpServletRequest httpServletRequest){
 
+        String email =httpServletRequest.getParameter("email");
+
+        return registrationRepository.findUserByEmailID(email);
+    }
 }
+
+
