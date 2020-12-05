@@ -27,9 +27,7 @@ public class RegistrationController {
 
     @GetMapping("/finduser")
     public List<Registration> findRegisteredUsers(HttpServletRequest httpServletRequest){
-
         String email =httpServletRequest.getParameter("email");
-
         return registrationRepository.findUserByEmailID(email);
     }
 }

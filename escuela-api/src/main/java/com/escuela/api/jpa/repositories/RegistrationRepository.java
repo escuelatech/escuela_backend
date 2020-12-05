@@ -16,8 +16,5 @@ public interface RegistrationRepository extends JpaRepository<Registration,Integ
    @Query("SELECT R FROM Registration R WHERE R.email=?1")
    List<Registration> findUserByEmailID(String email);
 
-  // @Query()
-  // List<Registration> updateUserEmail(@Param("email") String email);
-
 }
 
