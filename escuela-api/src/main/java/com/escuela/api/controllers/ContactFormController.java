@@ -19,8 +19,8 @@ public class ContactFormController {
         this.contactService = contactService;
     }
 
-    @PostMapping("/contactus")
-    public Contact contactUs(@RequestBody Contact newContact){
+    @PostMapping("/submitform")
+    public String contactUs(@RequestBody Contact newContact){
         return contactService.contactUs(newContact);
     }
 }

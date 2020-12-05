@@ -16,7 +16,8 @@ public class ContactServiceImpl implements ContactService {
         this.contactRepository = contactRepository;
     }
 
-    public Contact contactUs(Contact newContact){
-        return contactRepository.save(newContact);
+    public  String contactUs(Contact newContact){
+        contactRepository.save(newContact);
+        return "successfully submitted your contact";
     }
 }
