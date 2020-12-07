@@ -30,6 +30,8 @@ public class RegistrationController {
         String email =httpServletRequest.getParameter("email");
         return registrationRepository.findUserByEmailID(email);
     }
+
+
 }
 
 

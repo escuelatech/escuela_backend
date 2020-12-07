@@ -1,6 +1,7 @@
 package com.escuela.api.db.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user_registration")
@@ -20,6 +21,9 @@ public class Registration {
     @Column(name ="last_name")
     private String lastName;
 
+    @OneToMany(mappedBy = "registration",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<SkillMapping> skillMappings;
+
     public String getFirstName() {
         return firstName;
     }
@@ -31,6 +35,7 @@ public class Registration {
     public String getLastName() {
         return lastName;
     }
+
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -50,5 +55,13 @@ public class Registration {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<SkillMapping> getSkillMappings() {
+        return skillMappings;
+    }
+
+    public void setSkillMappings(List<SkillMapping> skillMappings) {
+        this.skillMappings = skillMappings;
     }
 }
