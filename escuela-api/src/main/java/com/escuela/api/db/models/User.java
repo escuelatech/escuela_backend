@@ -1,11 +1,13 @@
 package com.escuela.api.db.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "user_registration")
-public class Registration {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +23,11 @@ public class Registration {
     @Column(name ="last_name")
     private String lastName;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "registration")
-    private List<UserSkillMapping> skills;
+    private List<UserSkillMapping> skillMapping;
+
+//    private List<UserSkills> techSkills;
 
     public String getFirstName() {
         return firstName;
@@ -56,11 +61,11 @@ public class Registration {
         this.userId = userId;
     }
 
-    public List<UserSkillMapping> getSkills() {
-        return skills;
+    public List<UserSkillMapping> getSkillMapping() {
+        return skillMapping;
     }
 
-    public void setSkills(List<UserSkillMapping> skills) {
-        this.skills = skills;
+    public void setSkillMapping(List<UserSkillMapping> skills) {
+        this.skillMapping = skills;
     }
 }

@@ -1,7 +1,6 @@
 package com.escuela.api.db.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
@@ -20,7 +19,7 @@ public class UserSkillMapping {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Registration registration;
+    private User registration;
 
     public String getSkillId() {
         return skillId;
@@ -30,11 +29,11 @@ public class UserSkillMapping {
         this.skillId = skillId;
     }
 
-    public Registration getRegistration() {
+    public User getRegistration() {
         return registration;
     }
 
-    public void setRegistration(Registration registration) {
+    public void setRegistration(User registration) {
         this.registration = registration;
     }
 
