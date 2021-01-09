@@ -8,7 +8,7 @@ public class UserSkills {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name ="id")
-    private String id;
+    private int id;
 
     @Column(name ="skill_name")
     private String skillName;
@@ -16,11 +16,11 @@ public class UserSkills {
     @Column(name ="skill_id")
     private String skillId;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
