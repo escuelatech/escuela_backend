@@ -23,9 +23,29 @@ public class User {
     @Column(name ="last_name")
     private String lastName;
 
+    @Column(name ="city")
+    private String city;
+
+    @Column(name ="phone_number")
+    private String phone;
+
+    @Column(name ="highest_degree")
+    private String highestDegree;
+
+    @Column(name ="field_of_study")
+    private String fieldOfStudy;
+
+    @Column(name ="college_name")
+    private String collegeName;
+
+    @Column(name ="college_location")
+    private String collegeLocation;
+
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "registration")
     private List<UserSkillMapping> skillMapping;
+
+
 
 //    private List<UserSkills> techSkills;
 
@@ -68,4 +88,54 @@ public class User {
     public void setSkillMapping(List<UserSkillMapping> skills) {
         this.skillMapping = skills;
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getHighestDegree() {
+        return highestDegree;
+    }
+
+    public void setHighestDegree(String highestDegree) {
+        this.highestDegree = highestDegree;
+    }
+
+    public String getFieldOfStudy() {
+        return fieldOfStudy;
+    }
+
+    public void setFieldOfStudy(String fieldOfStudy) {
+        this.fieldOfStudy = fieldOfStudy;
+    }
+
+    public String getCollegeName() {
+        return collegeName;
+    }
+
+    public void setCollegeName(String collegeName) {
+        this.collegeName = collegeName;
+    }
+
+    public String getCollegeLocation() {
+        return collegeLocation;
+    }
+
+    public void setCollegeLocation(String collegeLocation) {
+        this.collegeLocation = collegeLocation;
+    }
+
+
 }
