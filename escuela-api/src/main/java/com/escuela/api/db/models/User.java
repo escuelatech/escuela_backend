@@ -41,6 +41,10 @@ public class User {
     @Column(name ="college_location")
     private String collegeLocation;
 
+    @Lob
+    @Column(name="resume")
+    private byte[] resume;
+
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "registration")
     private List<UserSkillMapping> skillMapping;
@@ -137,5 +141,11 @@ public class User {
         this.collegeLocation = collegeLocation;
     }
 
+    public byte[] getResume() {
+        return resume;
+    }
 
+    public void setResume(byte[] resume) {
+        this.resume = resume;
+    }
 }
