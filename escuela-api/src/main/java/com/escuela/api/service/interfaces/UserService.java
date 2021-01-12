@@ -10,4 +10,6 @@ public interface UserService {
     public List<User> getAllRegisteredUsers();
 
     public User newUser(User newUser);
+
+    public void saveResume(byte[] resume,String email);
 }
