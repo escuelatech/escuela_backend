@@ -32,8 +32,9 @@ public class FileUploadController {
 
 
     @PostMapping("/resume")
-    public String uploadResume(@RequestParam("file")MultipartFile multipartFile){
-        fileuploadService.uploadResume(multipartFile,"user@gmail.com");
+    public String uploadResume(@RequestParam("file")MultipartFile multipartFile,
+                               @RequestHeader("userEmail") String userEmail){
+        fileuploadService.uploadResume(multipartFile,userEmail);
         return String.format("File is uploaded successfully", multipartFile.getOriginalFilename());
     }
 }

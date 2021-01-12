@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
      * @param email
      */
     public void saveResume(byte[] resume,String email){
-        User user=userRepository.getOne(1);//Read user-by userid/user email
+        User user=userRepository.findUserByEmailID(email);//Read user-by userid/user email
         user.setResume(resume);
         //@TODO
         //Find the user from database by email-ID
