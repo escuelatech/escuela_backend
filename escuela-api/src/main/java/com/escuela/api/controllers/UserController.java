@@ -7,6 +7,7 @@ import com.escuela.api.service.interfaces.UserService;
 import com.escuela.api.service.interfaces.UserSkillMappingService;
 import com.escuela.api.service.interfaces.UserTechSkillsService;
 import com.escuela.api.ui.models.UserLogin;
+import com.escuela.api.service.interfaces.UserService;
 import com.escuela.api.ui.models.UserWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/register")
-public class UserController {
+public class UserController { 
 
     @Autowired
     UserSkillMappingService userSkillMappingService;
@@ -47,7 +48,6 @@ public class UserController {
 
     @GetMapping("/finduser")
     public UserWrapper findRegisteredUsers(HttpServletRequest httpServletRequest){
-
         String email =httpServletRequest.getParameter("email");
         
         //Fetch user from DB
@@ -88,7 +88,7 @@ public class UserController {
 
     @PostMapping("/adduserprofile")
     public String addUserDetails(@RequestBody UserWrapper userWrapper){
-
+      
         //userRepository.save(userWrapper.getUser());
         User userProfileInfo=userWrapper.getUser();
         Optional<User> dbUser=userService.findUserByEmailID(userProfileInfo.getEmail());
