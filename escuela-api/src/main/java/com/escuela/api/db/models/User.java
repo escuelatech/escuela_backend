@@ -41,6 +41,9 @@ public class User {
     @Column(name ="college_location")
     private String collegeLocation;
 
+    @Column(name = "profile_status")
+    private String profileStatus;
+
     @Lob
     @Column(name="resume")
     private byte[] resume;
@@ -147,5 +150,13 @@ public class User {
 
     public void setResume(byte[] resume) {
         this.resume = resume;
+    }
+
+    public String getProfileStatus() {
+        return profileStatus;
+    }
+
+    public void setProfileStatus(String profileStatus) {
+        this.profileStatus = profileStatus;
     }
 }
