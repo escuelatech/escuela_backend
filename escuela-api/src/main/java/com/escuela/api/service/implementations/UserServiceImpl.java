@@ -61,37 +61,38 @@ public class UserServiceImpl implements UserService {
         return userRepository.findUserByEmailID(email);
     }
 
-    @Override
+//    @Override
     public User findUser(String email) {
         return null;
     }
 
-    @Override
+//    @Override
     public User createUserProfile(UserWrapper userWrapper) {
 
         userRepository.save(userWrapper.getUser());
-        User user=userRepository.findUserByEmailID(userWrapper.getUser().getEmail());
+        Optional<User> user=userRepository.findUserByEmailID(userWrapper.getUser().getEmail());
 
         for (UserSkills skill:userWrapper.getSkills()){
             UserSkillMapping skillMapping=new UserSkillMapping();
-            skillMapping.setRegistration(user);
+            skillMapping.setRegistration(user.get());
             skillMapping.setSkillId(skill.getSkillId());
             userSkillMappingRepository.save(skillMapping);
         }
 
         for (JobDetails job:userWrapper.getPrevJobs()){
-            job.setUserId(user.getUserId());
+            job.setUserId(user.get().getUserId());
             jobDetailsRepository.save(job);
         }
         return null;
     }
 
-    @Override
+//    @Override
     public UserWrapper fetchUserProfile(String email) {
 
         //Fetch user from DB
-        User user=userRepository.findUserByEmailID(email);
+        Optional<User> dbUser=userRepository.findUserByEmailID(email);
         UserWrapper userWrapper=new UserWrapper();
+        User user=dbUser.get();
         userWrapper.setUser(user);
 
         //Fetch user skills from DB
