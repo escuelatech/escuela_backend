@@ -4,6 +4,7 @@ import com.escuela.api.db.models.User;
 import com.escuela.api.ui.models.UserWrapper;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -13,9 +14,6 @@ public interface UserService {
 
     public void saveResume(byte[] resume,String email);
 
-    public User findUser(String email);
+    public Optional<User> findUserByEmailID(String email);
 
-    public User createUserProfile(UserWrapper userWrapper);
-
-    public UserWrapper fetchUserProfile(String email);
 }

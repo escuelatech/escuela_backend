@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service(value = "userservice")
 public class UserServiceImpl implements UserService {
@@ -46,12 +47,18 @@ public class UserServiceImpl implements UserService {
      * @param email
      */
     public void saveResume(byte[] resume,String email){
-        User user=userRepository.findUserByEmailID(email);//Read user-by userid/user email
-        user.setResume(resume);
-        //@TODO
-        //Find the user from database by email-ID
-        //Set the resume to user object and save the user back to database
-        userRepository.save(user);
+        //User user=userRepository.findUserByEmailID(email);//Read user-by userid/user email
+        Optional<User> dbUser=userRepository.findUserByEmailID(email);
+        if(dbUser.isPresent()) {
+            User user=dbUser.get();
+            user.setResume(resume);
+            userRepository.save(user);
+        }
+    }
+
+    @Override
+    public Optional<User> findUserByEmailID(String email) {
+        return userRepository.findUserByEmailID(email);
     }
 
     @Override
