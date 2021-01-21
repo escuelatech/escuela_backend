@@ -9,6 +9,7 @@ import com.escuela.api.jpa.repositories.UserRepository;
 import com.escuela.api.jpa.repositories.UserSkillMappingRepository;
 import com.escuela.api.jpa.repositories.UserTechSkillsRepository;
 import com.escuela.api.service.interfaces.UserService;
+import com.escuela.api.ui.models.UserLogin;
 import com.escuela.api.ui.models.UserWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,29 +67,42 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-//    @Override
-    public User createUserProfile(UserWrapper userWrapper) {
+    @Override
+    public String createUserProfile(UserWrapper userWrapper) {
 
         userRepository.save(userWrapper.getUser());
-        Optional<User> user=userRepository.findUserByEmailID(userWrapper.getUser().getEmail());
+        Optional<User> dbUser=userRepository.findUserByEmailID(userWrapper.getUser().getEmail());
+
+        User user=dbUser.get();
+        User userProfileInfo=userWrapper.getUser();
+
+        user.setCity(userProfileInfo.getCity());
+        user.setPhone(userProfileInfo.getPhone());
+        user.setCollegeLocation(userProfileInfo.getCollegeLocation());
+        user.setCollegeName(userProfileInfo.getCollegeName());
+        user.setFieldOfStudy(userProfileInfo.getFieldOfStudy());
+        user.setHighestDegree(userProfileInfo.getHighestDegree());
 
         for (UserSkills skill:userWrapper.getSkills()){
             UserSkillMapping skillMapping=new UserSkillMapping();
-            skillMapping.setRegistration(user.get());
+            skillMapping.setRegistration(user);
             skillMapping.setSkillId(skill.getSkillId());
             userSkillMappingRepository.save(skillMapping);
         }
 
         for (JobDetails job:userWrapper.getPrevJobs()){
-            job.setUserId(user.get().getUserId());
+            job.setUserId(user.getUserId());
             jobDetailsRepository.save(job);
         }
-        return null;
+
+        user.setProfileStatus("complete");
+        //save the user info.
+        newUser(user);
+        return "user profile updated";
     }
 
-//    @Override
+    @Override
     public UserWrapper fetchUserProfile(String email) {
-
         //Fetch user from DB
         Optional<User> dbUser=userRepository.findUserByEmailID(email);
         UserWrapper userWrapper=new UserWrapper();
@@ -103,5 +117,25 @@ public class UserServiceImpl implements UserService {
         //Fetch user Jobs
         userWrapper.setPrevJobs(jobDetailsRepository.findUserJobsByID(user.getUserId()));
         return userWrapper;
+
     }
+
+    /**
+     *
+     * @param userLogin
+     * @return
+     */
+    public UserLogin userSocialLogin(UserLogin userLogin){
+        Optional<User> dbUser=findUserByEmailID(userLogin.getEmail());
+        if(!dbUser.isPresent()){
+            User user=new User();
+            user.setFirstName(userLogin.getFirstName());
+            user.setLastName(userLogin.getLastName());
+            user.setEmail(userLogin.getEmail());
+            user.setProfileStatus("incomplete");
+            newUser(user);
+        }
+        return userLogin;
+    }
+
 }

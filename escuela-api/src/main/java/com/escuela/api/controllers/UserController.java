@@ -34,36 +34,10 @@ public class UserController {
     @Autowired
     UserTechSkillsService userTechSkillsService;
 
-    @GetMapping("/findall")
-    public List<User> getAllRegisteredUsers(){
-//        return userRepository.findAll();
-        return userService.getAllRegisteredUsers();
-    }
-
-    @PostMapping("/adduser")
-    public User newUser(@RequestBody User newUser){
-//        return userRepository.save(newUser);
-        return userService.newUser(newUser);
-    }
-
     @GetMapping("/finduser")
     public UserWrapper findRegisteredUsers(HttpServletRequest httpServletRequest){
         String email =httpServletRequest.getParameter("email");
-        
-        //Fetch user from DB
-        Optional<User> dbUser=userService.findUserByEmailID(email);
-        UserWrapper userWrapper=new UserWrapper();
-        User user=dbUser.get();
-        userWrapper.setUser(user);
-
-        //Fetch user skills from DB
-        List<String> skillIds=new ArrayList<String>();
-        user.getSkillMapping().forEach(skillId -> skillIds.add(skillId.getSkillId()));
-        userWrapper.setSkills(userTechSkillsService.findSkillsByIDs(skillIds));
-
-        //Fetch user Jobs
-        userWrapper.setPrevJobs(jobDetailsService.findUserJobsByID(user.getUserId()));
-        return userWrapper;
+        return userService.fetchUserProfile(email);
     }
 
     @GetMapping("/findalljobs")
@@ -88,55 +62,11 @@ public class UserController {
 
     @PostMapping("/adduserprofile")
     public String addUserDetails(@RequestBody UserWrapper userWrapper){
-      
-        //userRepository.save(userWrapper.getUser());
-        User userProfileInfo=userWrapper.getUser();
-        Optional<User> dbUser=userService.findUserByEmailID(userProfileInfo.getEmail());
-
-        User user=dbUser.get();
-
-        user.setCity(userProfileInfo.getCity());
-        user.setPhone(userProfileInfo.getPhone());
-        user.setCollegeLocation(userProfileInfo.getCollegeLocation());
-        user.setCollegeName(userProfileInfo.getCollegeName());
-        user.setFieldOfStudy(userProfileInfo.getFieldOfStudy());
-        user.setHighestDegree(userProfileInfo.getHighestDegree());
-
-        for (UserSkills skill:userWrapper.getSkills()){
-             UserSkillMapping skillMapping=new UserSkillMapping();
-             skillMapping.setRegistration(dbUser.get());
-             skillMapping.setSkillId(skill.getSkillId());
-//           skillMapping.setSkillId("111");
-             userSkillMappingService.newUserSkill(skillMapping);
-        }
-
-        for (JobDetails job:userWrapper.getPrevJobs()){
-            job.setUserId(dbUser.get().getUserId());
-            jobDetailsService.newJob(job);
-        }
-
-        user.setProfileStatus("complete");
-        //save the user info.
-        userService.newUser(user);
-
-
-        return "user profile updated";
+        return userService.createUserProfile(userWrapper);
     }
-
     @PostMapping("/sociallogin")
     public UserLogin userSocialLogin(@RequestBody UserLogin userlogin){
-        //find user with the email.
-        Optional<User> dbUser=userService.findUserByEmailID(userlogin.getEmail());
-        if(!dbUser.isPresent()){
-            //If user not found persist the user to DB
-            User user=new User();
-            user.setFirstName(userlogin.getFirstName());
-            user.setLastName(userlogin.getLastName());
-            user.setEmail(userlogin.getEmail());
-            user.setProfileStatus("incomplete");
-            userService.newUser(user);
-        }
-        return userlogin;
+       return userService.userSocialLogin(userlogin);
     }
 
 }

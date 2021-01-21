@@ -1,6 +1,7 @@
 package com.escuela.api.service.interfaces;
 
 import com.escuela.api.db.models.User;
+import com.escuela.api.ui.models.UserLogin;
 import com.escuela.api.ui.models.UserWrapper;
 
 import java.util.List;
@@ -15,5 +16,11 @@ public interface UserService {
     public void saveResume(byte[] resume,String email);
 
     public Optional<User> findUserByEmailID(String email);
+
+    public UserLogin userSocialLogin(UserLogin userLogin);
+
+    public String createUserProfile(UserWrapper userWrapper);
+
+    public UserWrapper fetchUserProfile(String email);
 
 }
