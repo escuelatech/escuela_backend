@@ -70,7 +70,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public String createUserProfile(UserWrapper userWrapper) {
 
-        userRepository.save(userWrapper.getUser());
         Optional<User> dbUser=userRepository.findUserByEmailID(userWrapper.getUser().getEmail());
 
         User user=dbUser.get();
