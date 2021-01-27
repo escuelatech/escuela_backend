@@ -132,8 +132,11 @@ public class UserServiceImpl implements UserService {
             user.setLastName(userLogin.getLastName());
             user.setEmail(userLogin.getEmail());
             user.setProfileStatus("incomplete");
+            userLogin.setProfileStatus(user.getProfileStatus());
             newUser(user);
+            return userLogin;
         }
+        userLogin.setProfileStatus(dbUser.get().getProfileStatus());
         return userLogin;
     }
 
