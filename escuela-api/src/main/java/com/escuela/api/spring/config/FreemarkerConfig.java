@@ -12,11 +12,11 @@ public class FreemarkerConfig {
     @Autowired
     ResourceLoader resourceLoader;
 
-    @Bean(name = "freemarker")
+    /*@Bean(name = "freemarker")
     public FreeMarkerConfigurationFactoryBean getFreeMarkerConfiguration() {
         FreeMarkerConfigurationFactoryBean bean = new FreeMarkerConfigurationFactoryBean();
         bean.setTemplateLoaderPath("classpath:/templates/");
         bean.setResourceLoader(resourceLoader);
         return bean;
-    }
+    }*/
 }
