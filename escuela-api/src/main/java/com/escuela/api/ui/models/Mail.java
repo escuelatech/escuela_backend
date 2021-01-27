@@ -13,8 +13,16 @@ public class Mail {
     private String lastName;
     private String message;
     private String templateName;
+    private String ack;
 
-            
+    public String getAck() {
+        return ack;
+    }
+
+    public void setAck(String ack) {
+        this.ack = ack;
+    }
+
     public String getMessage() {
 		return message;
 	}
@@ -22,9 +30,6 @@ public class Mail {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-	public Mail() {
-    }
 
     public String getFrom() {
         return from;

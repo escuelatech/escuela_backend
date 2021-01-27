@@ -1,10 +1,12 @@
 package com.escuela.api.db.models;
 
+import com.escuela.api.ui.models.Mail;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="contact_form")
-public class Contact {
+public class Contact extends Mail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
