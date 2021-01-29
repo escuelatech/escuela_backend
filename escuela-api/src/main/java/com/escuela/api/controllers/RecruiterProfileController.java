@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/recruiter")
 public class RecruiterProfileController {
 
 
