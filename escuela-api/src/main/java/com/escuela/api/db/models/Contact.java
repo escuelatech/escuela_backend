@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="contact_form")
-public class Contact extends Mail {
+public class Contact  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
