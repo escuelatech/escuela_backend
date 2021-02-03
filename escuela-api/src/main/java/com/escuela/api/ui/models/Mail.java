@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Mail {
 
-    private Map<String,String> templateModel;
+    private Map<String,Object> templateModel;
     private String from;
     private String to;
     private String subject;
@@ -79,11 +79,11 @@ public class Mail {
         this.subject = subject;
     }
 
-    public Map<String, String> getTemplateModel() {
+    public Map<String, Object> getTemplateModel() {
         return templateModel;
     }
 
-    public void setTemplateModel(Map<String, String> templateModel) {
+    public void setTemplateModel(Map<String, Object> templateModel) {
         this.templateModel = templateModel;
     }
 
