@@ -8,6 +8,7 @@ import com.escuela.api.service.interfaces.EmailService;
 import com.escuela.api.ui.models.Mail;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -46,6 +47,7 @@ public class CourseTrainingServiceImpl implements CourseTrainingService {
         }
        return message;
     }
+
 
     private Mail getMailDetails(CourseTraining trainee) {
         Mail mail = new Mail();

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -20,6 +21,7 @@ public class EmailUtils {
 	 * @param subject
 	 * @return
 	 */
+
 	public  boolean sendInDividualEmail(String to,String subject,String body) {
 		try {
 			String from 	= "letstalk@escuelatech.com";

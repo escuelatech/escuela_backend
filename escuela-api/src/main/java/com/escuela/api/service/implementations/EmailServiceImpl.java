@@ -28,6 +28,7 @@ public class EmailServiceImpl implements EmailService {
 
 
     @Deprecated
+    @Async
     public void sendEmails(Mail mValue){
          try {
                 email.sendInDividualEmail(mValue.getEmail(), mValue.getSubject(),
