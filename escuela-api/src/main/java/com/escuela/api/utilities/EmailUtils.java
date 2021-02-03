@@ -29,7 +29,8 @@ public class EmailUtils {
 			msg.setTo(to);
 			msg.setSubject(subject);
 			msg.setText(body,true);
-			msg.addInline("logo.jpg", new ClassPathResource("logo.jpg"));
+			msg.addInline("aws.jpg", new ClassPathResource("aws.jpg"));
+//			msg.addInline("logo.jpeg", new ClassPathResource("logo.jpeg"));
 			mailSender.send(mimeMessage);
 			return true;
 		}  catch(Exception exc) {

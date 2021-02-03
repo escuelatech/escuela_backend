@@ -14,6 +14,6 @@
     ${message.ack}
 </p>
 <br>
-<img src="cid:logo.jpg" style="display: block;" width="200" height="150" />
+<img src="cid:logo.jpeg" style="display: block;" width="200" height="150" />
 </div>
         </@layout.myLayout>

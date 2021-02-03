@@ -15,4 +15,7 @@ public interface UserTechSkillsRepository extends JpaRepository<UserSkills,Integ
     @Query("SELECT skills FROM UserSkills skills WHERE skills.skillId IN (:skillIds)")     // 2. Spring JPA In cause using @Query
     List<UserSkills> findSkillsByIDs(@Param("skillIds") List<String> skillIds);
 
+
+
+
 }
