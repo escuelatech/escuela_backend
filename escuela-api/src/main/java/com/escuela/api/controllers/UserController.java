@@ -6,6 +6,7 @@ import com.escuela.api.service.interfaces.JobDetailsService;
 import com.escuela.api.service.interfaces.UserService;
 import com.escuela.api.service.interfaces.UserSkillMappingService;
 import com.escuela.api.service.interfaces.UserTechSkillsService;
+import com.escuela.api.ui.models.TechSkills;
 import com.escuela.api.ui.models.UserLogin;
 import com.escuela.api.service.interfaces.UserService;
 import com.escuela.api.ui.models.UserWrapper;
@@ -45,7 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/findallskills")
-    public List<UserSkills> getAllSkills(){
+    public List<TechSkills> getAllSkills(){
         return userTechSkillsService.getAllSkills();
     }
 

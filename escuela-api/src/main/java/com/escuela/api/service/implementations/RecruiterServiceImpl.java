@@ -36,7 +36,7 @@ public class RecruiterServiceImpl implements RecruiterService {
         Optional<Recruiter> dbRecruiter=recruiterRepository.findUserByEmailID(recruiter.getEmail());
         if(dbRecruiter.isPresent()) {
             Recruiter recruiterDb = dbRecruiter.get();
-            message = recruiterDb.getEmail()+ "is already register with us";
+            message = recruiterDb.getEmail()+ " is already registered with us. Please check your email to verify registration.";
         }else {
             //Recruiter recruiter=re.getRecruiter();
             recruiter.setStatus("pending");
@@ -44,7 +44,7 @@ public class RecruiterServiceImpl implements RecruiterService {
             if (recruiterRepository.save(recruiter) != null) {
                 emailService.sendEmails(getMailDetails(recruiter));
             }
-            message = "Recruiter Profile Created, Verification Code is send to "+recruiter.getEmail();
+            message = "Your Recruiter Profile has been created. Verification Code is send to "+recruiter.getEmail();
         }
         return message;
 
@@ -61,7 +61,7 @@ public class RecruiterServiceImpl implements RecruiterService {
                 "<a href='http://localhost:9093/recruiter/verifyrecruiter?id="+recruiter.getId()+"&"+
                 "verify="+recruiter.getVerificationCode()+"'>" +
                 "Please click here </a>" +
-                "For activating your account");
+                " for activating your account");
         mail.setTemplateName("/email_templates/contactus_mail.ftl");
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("message", mail);
