@@ -27,7 +27,7 @@ public class CourseTrainingServiceImpl implements CourseTrainingService {
 
     @Override
     public List<CourseTraining> getAllUserTrainees() {
-        return null;
+        return courseTrainingRepository.findAll();
     }
 
     @Override
