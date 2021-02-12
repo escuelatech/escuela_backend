@@ -27,12 +27,14 @@ public class EmailUtils {
 			String from 	= "letstalk@escuelatech.com";
 			MimeMessage mimeMessage = mailSender.createMimeMessage();
 			MimeMessageHelper msg = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-			msg.setFrom(new InternetAddress(from,"Esquela"));
+			msg.setFrom(new InternetAddress(from,"Escuela Technologies"));
 			msg.setTo(to);
 			msg.setSubject(subject);
 			msg.setText(body,true);
 			msg.addInline("aws.jpg", new ClassPathResource("aws.jpg"));
-//			msg.addInline("logo.jpeg", new ClassPathResource("logo.jpeg"));
+			msg.addInline("watsapp.png", new ClassPathResource("watsapp.png"));
+//			msg.addInline("logo.jpg", new ClassPathResource("logo.jpg"));
+			msg.addInline("logo.jpeg", new ClassPathResource("logo.jpeg"));
 			mailSender.send(mimeMessage);
 			return true;
 		}  catch(Exception exc) {

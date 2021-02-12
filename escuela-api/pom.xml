@@ -2,25 +2,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.escuela</groupId>
 	<artifactId>escuela-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>escuela-api</name>
-	<description>Esceual api</description>
+	<description>Escuela website API</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 		<sonar.projectKey>escuelatech_escuela_backend</sonar.projectKey>
 		<sonar.organization>escuelatech</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<spring.boot.version></spring.boot.version>
+		<hibernate.version>5.4.15.Final</hibernate.version>
+		<spring.version>5.2.6.RELEASE</spring.version>
 	</properties>
+
+<!--	<repositories>-->
+<!--		<repository>-->
+<!--			<id>atlassian-public</id>-->
+<!--			<url>https://packages.atlassian.com/maven/repository/public</url>-->
+<!--		</repository>-->
+<!--	</repositories>-->
 
 	<dependencies>
 		<dependency>
@@ -36,6 +48,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
@@ -64,19 +83,19 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.4.15.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>5.2.6.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>5.2.6.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>

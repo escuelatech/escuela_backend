@@ -42,15 +42,36 @@ public class JPAConfig {
         return em;
     }
 
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/escuela");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("root123");
+//        return dataSource;
+//    }
+
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/escuela");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root123");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/zzvwoitf_escuela_portal");
+        dataSource.setUsername("zzvwoitf_webuser");
+        dataSource.setPassword("Roundrock2021*");
         return dataSource;
     }
+
+//        @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/jmrymfjw_escuela_website");
+//        dataSource.setUsername("jmrymfjw_escuela");
+//        dataSource.setPassword("Roundrock2021*");
+//        return dataSource;
+//    }
+
 
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
